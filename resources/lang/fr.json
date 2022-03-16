@@ -1,0 +1,19 @@
+{
+    "Dashboard": "Tableau de bord",
+    "Visits": "Visites",
+    "Visit": "Visite",
+    "Practitioner": "Médecin",
+    "Name": "Nom",
+    "Address": "Adresse",
+    "Email": "Email",
+    "Website": "Site",
+    "Postal Code": "Code postale",
+    "City": "Ville",
+    "Update": "Modifier",
+    "Cancel": "Annuler",
+    "Delete": "Supprimer",
+    "Date": "Date",
+    "Creation": "Création",
+    "Error" : "Erreur",
+    "Not allowed": "Pas autorisé"
+}

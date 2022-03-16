@@ -11,6 +11,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    {{ \Illuminate\Support\Facades\Session::get('api_token') }}
+                    <b>Tout petit le token wsh</b>
                     <p class="mb-0">You are logged in!</p>
                 </div>
             </div>

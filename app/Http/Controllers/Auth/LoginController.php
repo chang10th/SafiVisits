@@ -43,13 +43,15 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
         $response = $this->loginAuthenticatesUsers($request);
-        $apiResponse = Http::asForm()->post(config('api.url').config('api.version').'login',[
-            'email' => $request->email,
+        $apiResponse = Http::asForm()->post(config('api.url').'login',[
+            'email'=>$request->email,
             'password'=>$request->password
         ]);
-        $token = json_decode($apiResponse->body())->success->token;
+        $token =json_decode($apiResponse->body())->success;
         Session::put('api_token',$token);
         return $response;
+
     }
 }
