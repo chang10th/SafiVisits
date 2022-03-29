@@ -3,23 +3,29 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 
 class Visit extends ApiModel
 {
     use HasFactory;
 
-    public static function all($columns=array())
+    public function __construct($id, $practitioner_id, $employee_id, $attendedDate, $visitstate_id, $practitioner)
     {
-        $response = Http::withToken(Session::get('api_token'))->get(config('api.url').'visit');
-        return json_decode($response->body());
+        $this->id=$id;
+        $this->practitioner_id=$practitioner_id;
+        $this->employee_id=$employee_id;
+        $this->attendedDate=$attendedDate;
+        $this->visitstate_id=$visitstate_id;
+        $this->practitioner=$practitioner;
     }
 
-    public static function getCurrentVisits($columns=array())
+    public static function all($columns=array())
     {
-        $response = Http::withToken(Session::get('api_token'))->get(config('api.url').'dashboard');
-        return json_decode($response->body());
+        return self::get('visit');
     }
+
+    public static function find($id)
+    {
+        return self::get('visit/'.$id);
+    }
+
 }

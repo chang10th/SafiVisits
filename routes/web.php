@@ -21,6 +21,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->group(function(){
+
+    // ----------------------------------- Home -----------------------------------
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::resource('dashboard',\App\Http\Controllers\DashboardController::class);
+
+    // ----------------------------------- Visit -----------------------------------
+    Route::get('/visit',[\App\Http\Controllers\VisitController::class, 'index'])->name('visit.index');
+    Route::get('/visit/{id}',[\App\Http\Controllers\VisitController::class, 'show'])->name('visit.show');
+    Route::get('/visit/{id}/createVisitreport',[\App\Http\Controllers\VisitController::class, 'createVisitreport'])->name('visit.createVisitreport');
+    Route::post('/visit/{id}/storeVisitreport',[\App\Http\Controllers\VisitController::class, 'storeVisitreport'])->name('visit.storeVisitreport');
+
+    // ----------------------------------- | -----------------------------------
 });

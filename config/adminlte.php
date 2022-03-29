@@ -248,7 +248,7 @@ return [
         ],
         [
             'text' => 'Dashboard',
-            'route' => 'dashboard.index',
+            'route' => 'visit.index',
             'icon'=> 'fa fa-clipboard-list'
         ]
     ],
@@ -289,7 +289,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
