@@ -38,6 +38,10 @@
                                 <option value="3">Ajusté</option>
                             </select>
                         </div>
+                        <button onclick="displayForm()">Ajouter des médicaments</button>
+                        <div class="form-group">
+
+                        </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">

@@ -3,7 +3,7 @@
 @section('title', env('APP_NAME'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Visite n°{{$visit->id}}</h1>
+    <h1 class="m-0 text-dark">Visite n°{{$visit->visitDetails->id}}</h1>
 @stop
 
 @section('content')
@@ -15,11 +15,11 @@
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
                             <b>Adresse</b>
-                            <span class="float-right">{{$visit->practitioner->city}}, {{$visit->practitioner->address}}</span>
+                            <span class="float-right">{{$visit->visitDetails->practitioner->city}}, {{$visit->visitDetails->practitioner->address}}</span>
                         </li>
                         <li class="list-group-item">
                             <b>Date</b>
-                            <span class="float-right">{{$visit->attendedDate}}</span>
+                            <span class="float-right">{{$visit->visitDetails->attendedDate}}</span>
                         </li>
                     </ul>
                 </div>

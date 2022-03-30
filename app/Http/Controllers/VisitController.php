@@ -19,7 +19,7 @@ class VisitController extends Controller
 
     public function createVisitreport($id)
     {
-        return view('visit.createVisitreport',['visit'=>Visit::find($id)]);
+        return view('visit.createVisitreport',['visit'=>Visit::find($id)->visitDetails]);
     }
 
     public function storeVisitreport($id, Request $request)
