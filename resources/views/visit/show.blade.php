@@ -19,7 +19,7 @@
                         </li>
                         <li class="list-group-item">
                             <b>Date</b>
-                            <span class="float-right">{{$visit->visitDetails->attendedDate}}</span>
+                            <span class="float-right">{{str_replace(['T','Z'],' ',$visit->visitDetails->attendedDate)}}</span>
                         </li>
                     </ul>
                 </div>
@@ -29,7 +29,7 @@
         <div class="col-md-4">
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
-                    <h3 class="m-3 text-dark">Compte-rendu précédent du client</h3>
+                    <h3 class="m-3 text-dark">Dernier compte-rendu de la visite</h3>
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
                             <b>Date de création</b>

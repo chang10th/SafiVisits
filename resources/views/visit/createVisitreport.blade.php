@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-6">
+        <div class="col-12">
             <form method="POST" action="{{route('visit.storeVisitreport',['id'=>$visit->id])}}">
                 @csrf
                 <input type="hidden" name="visit_id" value="{{$visit->id}}"/>
@@ -38,10 +38,9 @@
                                 <option value="3">Ajusté</option>
                             </select>
                         </div>
-                        <button onclick="displayForm()">Ajouter des médicaments</button>
-                        <div class="form-group">
-
-                        </div>
+{{--                        <div id="medecines_fields" class="form-group">--}}
+{{--                            <input type="button" value="Ajouter un médicament" onClick="addField();">--}}
+{{--                        </div>--}}
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
@@ -52,4 +51,14 @@
         </div>
     </div>
 @stop
+
+@section('js')
+{{--    <script>--}}
+{{--        var myOptions = '@foreach($medecines as $medecine) <option style="width:1px" value={{$medecine->id}}>{{$medecine->commercialName}}</option> @endforeach';--}}
+{{--        function addField(){--}}
+{{--            var field = "<br/><select name='medecine'><br/>" + myOptions + "<br/></select><br/>";--}}
+{{--            document.getElementById('medecines_fields').innerHTML += field;--}}
+{{--        }--}}
+{{--    </script>--}}
+@endsection
 

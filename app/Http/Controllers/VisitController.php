@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Medecine;
+use App\Models\Practitioner;
 use App\Models\Visit;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VisitController extends Controller
 {
@@ -17,9 +21,76 @@ class VisitController extends Controller
         return view('visit.show',['visit'=>Visit::find($id)]);
     }
 
+    public function createVisit()
+    {
+        return view('visit.createVisit',['practitioners'=>Practitioner::all()]);
+    }
+
+    public function edit($id)
+    {
+        return view('visit.edit',[
+            'visit'=>Visit::find($id)->visitDetails,
+            'error'=>False,
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Pour update la date de la visite
+        if($request->attendedDate_date.' '.$request->attendedDate_time > Carbon::today())
+        {
+            $data = [
+                'attendedDate'=>$request->attendedDate_date.' '.$request->attendedDate_time,
+            ];
+            Visit::put('visit/'.$id.'/update',$data);
+            return redirect(route('visit.show',['visit'=>Visit::find($id)]));
+        }
+        else{
+            return view('visit.edit',[
+                'visit'=>Visit::find($id)->visitDetails,
+                'error'=>True,
+            ]);
+        }
+
+        // Pour passer la visite en status 'annulée'
+        if($request->visitstate_id)
+        {
+            $data = [
+                'visitstate_id'=>$request->visitstate_id,
+            ];
+            Visit::put('visit/'.$id.'/update',$data);
+            return redirect(route('visit.index',['visits'=>Visit::all()]));
+        }
+    }
+
+    public function cancel($id)
+    {
+        return view('visit.cancel',[
+            'visit'=>Visit::find($id)->visitDetails,
+            'error'=>False,
+            'updateDate'=> False,
+            'updateVisitstate'=> True,
+        ]);
+    }
+
+    public function storeVisit(Request $request)
+    {
+        $data = [
+            'practitioner_id'=>$request->practitioner_id,
+            'employee_id'=>Auth::user()->getAuthIdentifier(),
+            'attendedDate'=>$request->attendedDate_date.' '.$request->attendedDate_time,
+            'visitstate_id'=>1,
+        ];
+        Visit::post('visit/storeVisit',$data);
+        return redirect(route('visit.index',['visits'=>Visit::all()]));
+    }
+
     public function createVisitreport($id)
     {
-        return view('visit.createVisitreport',['visit'=>Visit::find($id)->visitDetails]);
+        return view('visit.createVisitreport',[
+            'visit'=>Visit::find($id)->visitDetails,
+            'medecines'=>Medecine::all(),
+        ]);
     }
 
     public function storeVisitreport($id, Request $request)
@@ -32,6 +103,6 @@ class VisitController extends Controller
             'visitreportstate_id'=>$request->visitreportstate_id,
         ];
         Visit::post('visit/'.$id.'/storeVisitreport',$data);
-        return view('visit.show',['visit'=>Visit::find($id)]);
+        return redirect(route('visit.show',['visit'=>Visit::find($id)]));
     }
 }

@@ -3,9 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Medecine extends Model
+class Medecine extends ApiModel
 {
     use HasFactory;
+
+    public static function all($columns=array())
+    {
+        return self::get('medecine');
+    }
+
+    public static function find($id)
+    {
+        return self::get('visit/'.$id);
+    }
 }

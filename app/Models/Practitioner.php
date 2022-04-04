@@ -23,11 +23,7 @@ class Practitioner extends ApiModel
 
     public static function all($columns=array())
     {
-        $response = self::get('visit');
-
-        $practitioners = collect(json_decode($response->body()));
-
-        return $practitioners;
+        return self::get('practitioner');
     }
 
     public static function find($id)

@@ -27,9 +27,14 @@ Route::middleware('auth')->group(function(){
 
     // ----------------------------------- Visit -----------------------------------
     Route::get('/visit',[\App\Http\Controllers\VisitController::class, 'index'])->name('visit.index');
+    Route::get('/visit/createVisit',[\App\Http\Controllers\VisitController::class, 'createVisit'])->name('visit.createVisit');
+    Route::post('/visit/storeVisit',[\App\Http\Controllers\VisitController::class, 'storeVisit'])->name('visit.storeVisit');
     Route::get('/visit/{id}',[\App\Http\Controllers\VisitController::class, 'show'])->name('visit.show');
     Route::get('/visit/{id}/createVisitreport',[\App\Http\Controllers\VisitController::class, 'createVisitreport'])->name('visit.createVisitreport');
     Route::post('/visit/{id}/storeVisitreport',[\App\Http\Controllers\VisitController::class, 'storeVisitreport'])->name('visit.storeVisitreport');
+    Route::get('/visit/{id}/edit',[\App\Http\Controllers\VisitController::class, 'edit'])->name('visit.edit');
+    Route::put('/visit/{id}/update',[\App\Http\Controllers\VisitController::class, 'update'])->name('visit.update');
+    Route::get('/visit/{id}/cancel',[\App\Http\Controllers\VisitController::class, 'cancel'])->name('visit.cancel');
 
     // ----------------------------------- | -----------------------------------
 });
