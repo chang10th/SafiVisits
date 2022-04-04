@@ -14,7 +14,7 @@
                 @csrf
                 <input type="hidden" name="visitstate_id" value="4"/>
 
-                // Ajouter deux boutons 'annuler' ou 'confirmer'
+                // Ajouter deux boutons 'annuler' ou 'confirmer' .
 
             </form>
         </div>
