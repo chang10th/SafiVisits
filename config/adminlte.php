@@ -235,6 +235,12 @@ return [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
+        [
+            'text' => 'Profil',
+            'topnav_right' => true,
+            'route' => 'employee.index',
+            'icon'=> 'fa fa-user'
+        ],
 
         // Sidebar items:
         [
@@ -247,10 +253,15 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text' => 'Dashboard',
+            'text' => 'Planifier les visites',
             'route' => 'visit.index',
             'icon'=> 'fa fa-clipboard-list'
-        ]
+        ],
+        [
+            'text' => 'Portefeuille de practiciens',
+            'route' => 'practitioner.index',
+            'icon'=> 'fa fa-users'
+        ],
     ],
 
     /*

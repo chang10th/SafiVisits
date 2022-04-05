@@ -43,7 +43,15 @@ class VisitController extends Controller
                 'attendedDate'=>$request->attendedDate_date.' '.$request->attendedDate_time,
             ];
             Visit::put('visit/'.$id.'/update',$data);
-            return redirect(route('visit.show',['visit'=>Visit::find($id)]));
+            return redirect(route('visit.show',['visit'=>Visit::find($id),'id'=>$id]));
+        }
+        if($request->visitstate_id)
+        {
+            $data = [
+                'visitstate_id'=>$request->visitstate_id,
+            ];
+            Visit::put('visit/'.$id.'/update',$data);
+            return redirect(route('visit.index',['visits'=>Visit::all()]));
         }
         else{
             return view('visit.edit',[
@@ -53,36 +61,33 @@ class VisitController extends Controller
         }
 
         // Pour passer la visite en status 'annulée'
-        if($request->visitstate_id)
-        {
-            $data = [
-                'visitstate_id'=>$request->visitstate_id,
-            ];
-            Visit::put('visit/'.$id.'/update',$data);
-            return redirect(route('visit.index',['visits'=>Visit::all()]));
-        }
+
     }
 
-    public function cancel($id)
+    public function deleteForm($id)
     {
-        return view('visit.cancel',[
+        return view('visit.deleteForm',[
             'visit'=>Visit::find($id)->visitDetails,
             'error'=>False,
-            'updateDate'=> False,
-            'updateVisitstate'=> True,
         ]);
+    }
+
+    public function delete($id)
+    {
+        Visit::destroy('visit/'.$id.'/delete');
+        return view('visit.index',['visits'=>Visit::all()]);
     }
 
     public function storeVisit(Request $request)
     {
         $data = [
-            'practitioner_id'=>$request->practitioner_id,
+            'practitioner_id'=>(int)$request->practitioner_id,
             'employee_id'=>Auth::user()->getAuthIdentifier(),
             'attendedDate'=>$request->attendedDate_date.' '.$request->attendedDate_time,
             'visitstate_id'=>1,
         ];
         Visit::post('visit/storeVisit',$data);
-        return redirect(route('visit.index',['visits'=>Visit::all()]));
+        return view('visit.index',['visits'=>Visit::all()]);
     }
 
     public function createVisitreport($id)

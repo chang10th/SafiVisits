@@ -34,7 +34,12 @@ Route::middleware('auth')->group(function(){
     Route::post('/visit/{id}/storeVisitreport',[\App\Http\Controllers\VisitController::class, 'storeVisitreport'])->name('visit.storeVisitreport');
     Route::get('/visit/{id}/edit',[\App\Http\Controllers\VisitController::class, 'edit'])->name('visit.edit');
     Route::put('/visit/{id}/update',[\App\Http\Controllers\VisitController::class, 'update'])->name('visit.update');
-    Route::get('/visit/{id}/cancel',[\App\Http\Controllers\VisitController::class, 'cancel'])->name('visit.cancel');
+    Route::get('/visit/{id}/deleteForm',[\App\Http\Controllers\VisitController::class, 'deleteForm'])->name('visit.deleteForm');
+    Route::delete('/visit/{id}/delete',[\App\Http\Controllers\VisitController::class, 'delete'])->name('visit.delete');
 
-    // ----------------------------------- | -----------------------------------
+    // ----------------------------------- Practitioner -----------------------------------
+    Route::get('/practitioner',[\App\Http\Controllers\PractitionerController::class, 'index'])->name('practitioner.index');
+
+    // ----------------------------------- Employee(Profil) -----------------------------------
+    Route::get('/employee',[\App\Http\Controllers\EmployeeController::class, 'index'])->name('employee.index');
 });

@@ -3,7 +3,7 @@
 @section('title', env('APP_NAME'))
 
 @section('content_header')
-    <h1 class="m-0 text-dark">{{__('Dashboard')}}</h1>
+    <h1 class="m-0 text-dark">Planifier des visites</h1>
 @stop
 
 @section('content')
@@ -98,7 +98,7 @@
                                     <a class="btn btn-default btn-xs" href="{{route('visit.edit',['id'=>$visitTomorrow->id])}}">
                                         <i class="fa fa-pen"></i>
                                     </a>
-                                    <a class="btn btn-default btn-xs" href="{{route('visit.cancel',['id'=>$visitTomorrow->id])}}">
+                                    <a class="btn btn-default btn-xs" href="{{route('visit.deleteForm',['id'=>$visitTomorrow->id])}}">
                                         <i class="fa fa-ban"></i>
                                     </a>
                                 </td>
