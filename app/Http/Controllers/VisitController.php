@@ -108,6 +108,6 @@ class VisitController extends Controller
             'visitreportstate_id'=>$request->visitreportstate_id,
         ];
         Visit::post('visit/'.$id.'/storeVisitreport',$data);
-        return redirect(route('visit.show',['visit'=>Visit::find($id)]));
+        return redirect(route('visit.show',['visit'=>Visit::find($id),'id'=>$id]));
     }
 }

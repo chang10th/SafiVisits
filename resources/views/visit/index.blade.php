@@ -71,7 +71,7 @@
                         <tr>
                             <th>{{'#'}}</th>
                             <th>{{__('Date')}}</th>
-                            <th>{{__('Practitioner')}}</th>
+                            <th>{{__('Praticien')}}</th>
                             <th>{{__('Ville')}}</th>
                             <th>{{__('Action')}}</th>
                         </tr>
