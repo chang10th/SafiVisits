@@ -35,7 +35,7 @@
                             <select name="visitreportstate_id">
                                 <option value="1">En attente</option>
                                 <option value="2">Réalisé</option>
-                                <option value="3">Ajusté</option>
+                                <option value="3">Ajusté</option>git remote add
                             </select>
                         </div>
 {{--                        <div id="medecines_fields" class="form-group">--}}
